@@ -1,6 +1,9 @@
 
 import cocos
 import cocos.actions as actions
+import cocos.layer as layer
+import cocos.menu as menu
+from cocos.text import Label
 from cocos.director import director
 import pyglet
 
@@ -88,3 +91,60 @@ class MouseDisplay(cocos.layer.Layer):
         """
         self.posx, self.posy = director.get_virtual_coordinates (x, y)
         self.update_text (x,y)
+
+class GotoMenuScreen(actions.Action):
+    def __init__(self, *args, **kargs):
+        super(GotoMenuScreen, self).__init__(*args, **kargs)
+    def start(self):
+        from engine import engine
+        engine.transition("MENU")
+        
+class SplashScreenLayer(layer.ColorLayer):
+    def __init__(self):
+        super(SplashScreenLayer, self).__init__(64, 64, 224, 255)
+        self.label = Label('hello, world', font_name='Times New Roman', font_size=32, anchor_x='center', anchor_y='center')
+        self.label.position = 320,240
+        scale = actions.ScaleBy(3, duration=1)
+        self.label.do(actions.Delay(1) + scale + actions.Reverse(scale) + GotoMenuScreen())
+        self.add(self.label)
+        
+
+class MenuBackground(layer.ColorLayer):
+    def __init__(self):
+        super(MenuBackground, self).__init__(0, 0, 0, 255)
+
+class MainMenu(menu.Menu):
+    def __init__(self):
+        #self.background = cocos.layer.ColorLayer(0, 0, 0, 255)
+        super(MainMenu, self).__init__("Captured under thread")
+        self.font_title['font_size'] = 42
+        self.font_item['font_size'] = 32
+        self.font_item_selected['font_size'] = 36
+        self.menu_valign = menu.CENTER
+        self.menu_halign = menu.CENTER
+        self.create_menu([
+            menu.MenuItem('New Game', self.on_new_game),
+            menu.MenuItem('Options', self.on_options),
+            menu.MenuItem('Quit', self.on_quit),
+        ], menu.zoom_in(), menu.zoom_out())
+        #self.scene = cocos.scene.Scene(self.background, self.menu)
+    def on_new_game(self):
+        print "ong"
+    def on_options(self):
+        print self.parent.switch_to(1)
+    def on_quit(self):
+        director.pop()
+
+class OptionMenu(menu.Menu):
+    def __init__(self):
+        super(OptionMenu, self).__init__("Options")
+        self.font_title['font_size'] = 42
+        self.font_item['font_size'] = 32
+        self.font_item_selected['font_size'] = 36
+        self.menu_valign = menu.CENTER
+        self.menu_halign = menu.CENTER
+        self.create_menu([
+            menu.MenuItem('Okay', self.on_okay),
+        ], menu.zoom_in(), menu.zoom_out())
+    def on_okay(self):
+        self.parent.switch_to(0)

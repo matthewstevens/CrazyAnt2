@@ -7,7 +7,8 @@ package.
 '''
 
 import data
+from engine import engine
 
 def main():
-    print "Hello from your game's main()"
-    print data.load('sample.txt').read()
+    engine.init()
+    engine.run()

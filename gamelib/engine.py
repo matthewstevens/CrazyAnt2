@@ -3,20 +3,39 @@ Like the cocos2d director it is a singleton.
 '''
 
 import cocos
+import cocos.layer as layer
+import cocos.scene as scene
 from cocos.director import director
-from util_layers import HelloWorld, KeyDisplay, MouseDisplay
+from util_layers import HelloWorld, KeyDisplay, MouseDisplay, SplashScreenLayer, MenuBackground, MainMenu, OptionMenu
+#from util_screens import MenuScreen, SplashScreen
 
-class Engine:
+class Engine(object):
     def init(self):
         """
         Initialise the director, then load the levels
         Then create the scenes
         """
-        cocos.director.director.init()
-        self.scenes = []
+        director.init()
+        self.scenes = {
+            "SPLASH": self.create_splash(),
+            "MENU": self.create_menus(),
+        }
+
+    def create_splash(self):
+        return scene.Scene(SplashScreenLayer())
+
+    def create_menus(self):
+        layers = layer.MultiplexLayer(MainMenu(), OptionMenu())
+        return scene.Scene(MenuBackground(), layers)
+    def transition(self, name):
+        director.replace(self.scenes[name])
+    def push(self, name):
+        director.push(self.scenes[name])
     def run(self): 
         hello_layer = HelloWorld()
-        main_scene = cocos.scene.Scene(hello_layer, KeyDisplay(), MouseDisplay())
-        cocos.director.director.run(main_scene)
+        #main_scene = cocos.scene.Scene(hello_layer, KeyDisplay(), MouseDisplay())
+        #cocos.director.director.run(main_scene)
+        # start it off at the starting scene
+        director.run(self.scenes["SPLASH"])
 
 engine = Engine()
