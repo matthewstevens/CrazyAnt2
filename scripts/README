@@ -1,0 +1,9 @@
+Scripts and support files for setting up a virtual environment. Assumes dev machine has pip and virtualenv installed.
+
+Run "./create.sh <dirname>" where <dirname> is the name of the virtualenv directory you want to install the virtualenv too (doesn't have to exist initially).
+
+TODO: Check out a copy of the final project inside the virtualenv as well or sim link the project into this directory.
+
+To use the virtual environment use the following commands in the virtual env directory:
+   - ". ./bin/activate" <-- activates the virtual environment, a prefix should be added to your bash specifier
+   - "deactivate" <-- deactivates the virtual environment
