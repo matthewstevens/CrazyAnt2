@@ -31,6 +31,10 @@ class Engine(object):
         return scene.Scene(MenuBackground(), layers)
     def create_levels(self):
         config = resourceManager.config
+        sections = config.sections()
+        for section in sections:
+            level_config = dict(config.items(section))
+            print level_config
         return {}
     def transition(self, name):
         director.replace(self.scenes[name])
