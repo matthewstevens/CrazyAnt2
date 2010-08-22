@@ -5,6 +5,7 @@ Loads data files from the "data" directory shipped with a game.
 Enhancing this to handle caching etc. is left as an exercise for the reader.
 '''
 
+from ConfigParser import ConfigParser
 import os
 import weakref
 
@@ -25,8 +26,14 @@ def load(filename, mode='rb'):
 
 class ResourceManager(object):
     def __init__(self):
-        self.resource_mappings = {}
-        self.cache = weakref.WeakValueDictionary()
+        self.__dict__.update(dict(
+            resource_mappings = {},
+            cache = weakref.WeakValueDictionary()
+        ))
+        # populate ourselves with the data from teh data directory
+        for filename in os.listdir(data_dir):
+            key, _ = os.path.splitext(filename)
+            self.__setattr__(key, filename)
     def __setattr__(self, key, filename):
         self.resource_mappings[key] = filename
     def __getattr__(self, key):
@@ -37,5 +44,17 @@ class ResourceManager(object):
             resource = self.cache[key]
         except KeyError:
             resource = None # FIXME - load something
+            resource = self.load_resource(self.resource_mappings[key])
             self.cache[key] = resource
         return resource
+    def load_resource(self, filename):
+        _ , extension = os.path.splitext(filename)
+        if extension == '.cfg':
+            config = ConfigParser()
+            config.readfp(load(filename))
+            return config
+        else:
+            """ We can't find a mapping!!"""
+            return None
+
+resourceManager = ResourceManager()
