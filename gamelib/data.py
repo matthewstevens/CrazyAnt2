@@ -6,6 +6,7 @@ Enhancing this to handle caching etc. is left as an exercise for the reader.
 '''
 
 from ConfigParser import ConfigParser
+from pyglet import image
 import os
 import weakref
 
@@ -53,8 +54,10 @@ class ResourceManager(object):
             config = ConfigParser()
             config.readfp(load(filename))
             return config
+        elif extension == '.png':
+            return image.load('hint.png', file=load(filename))
         else:
             """ We can't find a mapping!!"""
-            return None
+            raise Exception("We do not know how to load the resource: %s" % filename)
 
 resourceManager = ResourceManager()

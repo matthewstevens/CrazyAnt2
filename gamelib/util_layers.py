@@ -129,7 +129,8 @@ class MainMenu(menu.Menu):
         ], menu.zoom_in(), menu.zoom_out())
         #self.scene = cocos.scene.Scene(self.background, self.menu)
     def on_new_game(self):
-        print "ong"
+        from engine import engine
+        print engine.transition("GAME")
     def on_options(self):
         print self.parent.switch_to(1)
     def on_quit(self):

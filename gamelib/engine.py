@@ -6,10 +6,24 @@ import cocos
 from cocos.director import director
 import cocos.layer as layer
 import cocos.scene as scene
+from cocos.sprite import Sprite
 
 from data import resourceManager
 from util_layers import HelloWorld, KeyDisplay, MouseDisplay, SplashScreenLayer, MenuBackground, MainMenu, OptionMenu
 #from util_screens import MenuScreen, SplashScreen
+
+class Level(object):
+    """
+    Test level to prototype how it all works
+    """
+    def __init__(self):
+        self.layer = layer.Layer()
+        self.character = Sprite(resourceManager.man)
+        self.character.position = (100, 100)
+        self.layer.add(self.character)
+        self.scene = scene.Scene(self.layer)
+    def get_scene(self):
+        return self.scene
 
 class Engine(object):
     def init(self):
@@ -35,7 +49,12 @@ class Engine(object):
         for section in sections:
             level_config = dict(config.items(section))
             print level_config
-        return {}
+        self.level = Level()
+        return {
+            # FIXME - this needs replacing with levels
+            #
+            "GAME": self.level.get_scene()
+        }
     def transition(self, name):
         director.replace(self.scenes[name])
     def push(self, name):
