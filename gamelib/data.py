@@ -8,7 +8,6 @@ Enhancing this to handle caching etc. is left as an exercise for the reader.
 from ConfigParser import ConfigParser
 from pyglet import image
 import os
-import weakref
 
 data_py = os.path.abspath(os.path.dirname(__file__))
 data_dir = os.path.normpath(os.path.join(data_py, '..', 'data'))
@@ -29,7 +28,7 @@ class ResourceManager(object):
     def __init__(self):
         self.__dict__.update(dict(
             resource_mappings = {},
-            cache = weakref.WeakValueDictionary()
+            cache = {}
         ))
         # populate ourselves with the data from teh data directory
         for filename in os.listdir(data_dir):
@@ -49,6 +48,15 @@ class ResourceManager(object):
             self.cache[key] = resource
         return resource
     def load_resource(self, filename):
+        path = filepath(filename)
+        if os.path.isdir(path):
+            result = []
+            files = os.listdir(path)
+            files.sort()
+            for file in files:
+                print file
+                result.append(self.load_resource(os.path.join(filename, file)))
+            return result
         _ , extension = os.path.splitext(filename)
         if extension == '.cfg':
             config = ConfigParser()
@@ -56,8 +64,7 @@ class ResourceManager(object):
             return config
         elif extension == '.png':
             return image.load('hint.png', file=load(filename))
-        else:
-            """ We can't find a mapping!!"""
-            raise Exception("We do not know how to load the resource: %s" % filename)
+        """ We can't find a mapping!!"""
+        raise Exception("We do not know how to load the resource: %s" % filename)
 
 resourceManager = ResourceManager()

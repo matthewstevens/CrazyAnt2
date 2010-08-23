@@ -7,6 +7,7 @@ from cocos.director import director
 import cocos.layer as layer
 import cocos.scene as scene
 from cocos.sprite import Sprite
+from pyglet import image
 
 from data import resourceManager
 from util_layers import HelloWorld, KeyDisplay, MouseDisplay, SplashScreenLayer, MenuBackground, MainMenu, OptionMenu
@@ -18,8 +19,11 @@ class Level(object):
     """
     def __init__(self):
         self.layer = layer.Layer()
-        self.character = Sprite(resourceManager.man)
-        self.character.position = (100, 100)
+        #self.character = Sprite(resourceManager.mananim)
+        frames = resourceManager.manstanding
+        print len(frames)
+        animation = image.Animation.from_image_sequence(frames, 0.4)
+        self.character = Sprite(animation, position = (100, 100))
         self.layer.add(self.character)
         self.scene = scene.Scene(self.layer)
     def get_scene(self):
