@@ -1,0 +1,223 @@
+<resource><requires file="level1-tiles.xml" />
+<rectmap id="level1" origin="0,0,0" tile_size="64x64"><column><cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell tile="level1-tiles-0-704" />
+<cell />
+<cell tile="level1-tiles-384-704" />
+<cell tile="level1-tiles-384-704" />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell tile="level1-tiles-0-704" />
+<cell />
+<cell tile="level1-tiles-64-704" />
+<cell tile="level1-tiles-384-704" />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell tile="level1-tiles-0-704" />
+<cell />
+<cell tile="level1-tiles-128-704" />
+<cell tile="level1-tiles-384-704" />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell tile="level1-tiles-0-704" />
+<cell tile="level1-tiles-512-0" />
+<cell tile="level1-tiles-192-704" />
+<cell tile="level1-tiles-384-704" />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell tile="level1-tiles-0-704" />
+<cell tile="level1-tiles-320-256" />
+<cell tile="level1-tiles-384-704" />
+<cell tile="level1-tiles-384-704" />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell tile="level1-tiles-0-704" />
+<cell tile="level1-tiles-320-704" />
+<cell tile="level1-tiles-320-256" />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell tile="level1-tiles-0-704" />
+<cell tile="level1-tiles-256-704" />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell tile="level1-tiles-0-704" />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+<column><cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+</column>
+</rectmap>
+</resource>
