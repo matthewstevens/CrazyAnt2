@@ -1,5 +1,5 @@
 <resource>
-<imageatlas file="C:\Documents and Settings\Matthew Stevens\My Documents\crazyant2.png" size="64x64">
+<imageatlas file="crazyant2.png" size="64x64">
 <image id="i-level1-tiles-0-0" offset="0,0" />
 <image id="i-level1-tiles-0-64" offset="0,64" />
 <image id="i-level1-tiles-0-128" offset="0,128" />

@@ -4,30 +4,67 @@ Like the cocos2d director it is a singleton.
 
 import cocos
 from cocos.director import director
-import cocos.layer as layer
-import cocos.scene as scene
+from cocos import layer
+from cocos import scene
+from cocos import tiles
 from cocos.sprite import Sprite
+from cocos.actions import Action
 from pyglet import image
 
 from data import resourceManager
 from util_layers import HelloWorld, KeyDisplay, MouseDisplay, SplashScreenLayer, MenuBackground, MainMenu, OptionMenu
 #from util_screens import MenuScreen, SplashScreen
 
-class Level(object):
+class Level(scene.Scene):
+
+    is_event_handler = True
+
     """
     Test level to prototype how it all works
     """
     def __init__(self):
-        self.layer = layer.Layer()
-        #self.character = Sprite(resourceManager.mananim)
-        frames = resourceManager.manstanding
+        super(Level, self).__init__()
+
+        self.manager = layer.ScrollingManager(director.window)
+
+        self.map = resourceManager.levels.level1['level1']
+        self.manager.add(self.map)
+        self.add(self.map, z=1)
+
+        frames = resourceManager.objects.character['manstanding']
         print len(frames)
         animation = image.Animation.from_image_sequence(frames, 0.4)
         self.character = Sprite(animation, position = (100, 100))
-        self.layer.add(self.character)
-        self.scene = scene.Scene(self.layer)
+        self.char_layer = layer.ScrollableLayer()
+        self.char_layer.add(self.character)
+        self.add(self.char_layer, z=2)
+        self.manager.add(self.char_layer)
+        #self.layer = layer.Layer()
+        #self.character = Sprite(resourceManager.mananim)
+        #self.layer.add(self.character)
+        #self.manager.add(self.character)
+        #self.scene = scene.Scene(self.layer)
+        #self.scene = scene.Scene(self)
+        #
+        #self.scene.do(LevelAction())
+        #self.do(LevelAction())
+        self.manager.set_focus(-100, -100)
+    def step(self, dt):
+        #print 'ping'
+        pass
     def get_scene(self):
         return self.scene
+    def on_key_press(self, symbol, modifiers):
+        print 'ouch'
+    def on_key_release(self, symbo, modifiers):
+        print 'aaah'
+
+class LevelAction(Action):
+    def step(self, dt):
+        #x, y, = self.target.char_layer.position
+        #self.target.manager.set_focus(int(x), int(y))
+        #print 'ping'
+        pass
 
 class Engine(object):
     def init(self):
@@ -48,16 +85,19 @@ class Engine(object):
         layers = layer.MultiplexLayer(MainMenu(), OptionMenu())
         return scene.Scene(MenuBackground(), layers)
     def create_levels(self):
+        """
+        FIXME - do we need a config, seems pointless
         config = resourceManager.config
         sections = config.sections()
         for section in sections:
             level_config = dict(config.items(section))
             print level_config
+        """
         self.level = Level()
         return {
             # FIXME - this needs replacing with levels
             #
-            "GAME": self.level.get_scene()
+            "GAME": self.level
         }
     def transition(self, name):
         director.replace(self.scenes[name])
