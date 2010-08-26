@@ -28,27 +28,22 @@ class Level(scene.Scene):
         self.manager = layer.ScrollingManager(director.window)
 
         self.map = resourceManager.levels.level1['level1']
-        self.manager.add(self.map)
-        self.add(self.map, z=1)
+        self.map.set_view(0, 0, 640, 480)
+        self.add(self.map)
+
+        self.manager.add(self.map, z = 1)
+        self.manager.set_focus(100, 100)
+        self.add(self.manager)
 
         frames = resourceManager.objects.character['manstanding']
-        print len(frames)
         animation = image.Animation.from_image_sequence(frames, 0.4)
-        self.character = Sprite(animation, position = (100, 100))
+        self.character = Sprite(animation, position = (100, 306))
         self.char_layer = layer.ScrollableLayer()
         self.char_layer.add(self.character)
-        self.add(self.char_layer, z=2)
-        self.manager.add(self.char_layer)
-        #self.layer = layer.Layer()
-        #self.character = Sprite(resourceManager.mananim)
-        #self.layer.add(self.character)
-        #self.manager.add(self.character)
-        #self.scene = scene.Scene(self.layer)
-        #self.scene = scene.Scene(self)
-        #
-        #self.scene.do(LevelAction())
+        self.add(self.char_layer)
+        self.manager.add(self.char_layer, z = 2)
         #self.do(LevelAction())
-        self.manager.set_focus(-100, -100)
+        #self.manager.set_focus(-100, -100)
     def step(self, dt):
         #print 'ping'
         pass
@@ -73,6 +68,7 @@ class Engine(object):
         Then create the scenes
         """
         director.init()
+        director.window.set_caption("Captured Under Thread")
         self.scenes = {
             "SPLASH": self.create_splash(),
             "MENU": self.create_menus(),
@@ -93,6 +89,17 @@ class Engine(object):
             level_config = dict(config.items(section))
             print level_config
         """
+        """
+        map = resourceManager.levels.level1['level1']
+        print map.px_width
+        print map.px_height
+        self.level = scene.Scene(map)
+        map.set_view(0, 0, 640, 480)
+        manager = layer.ScrollingManager(director.window)
+        manager.add(map, z = 1)
+        manager.set_focus(256, 256)
+        self.level.add(manager)
+        """
         self.level = Level()
         return {
             # FIXME - this needs replacing with levels
@@ -108,6 +115,7 @@ class Engine(object):
         #main_scene = cocos.scene.Scene(hello_layer, KeyDisplay(), MouseDisplay())
         #cocos.director.director.run(main_scene)
         # start it off at the starting scene
-        director.run(self.scenes["SPLASH"])
+        #director.run(self.scenes["SPLASH"])
+        director.run(self.scenes["GAME"])
 
 engine = Engine()

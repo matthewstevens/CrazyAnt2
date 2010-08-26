@@ -8,21 +8,21 @@
 <cell />
 <cell />
 <cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 </column>
 <column><cell />
-<cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
+<cell tile="level1-tiles-0-704" />
 <cell tile="level1-tiles-0-704" />
 <cell />
 <cell tile="level1-tiles-384-704" />
 <cell tile="level1-tiles-384-704" />
 <cell />
 <cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 </column>
 <column><cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 <cell />
 <cell tile="level1-tiles-0-704" />
 <cell />
@@ -30,10 +30,10 @@
 <cell tile="level1-tiles-384-704" />
 <cell />
 <cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 </column>
 <column><cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 <cell />
 <cell tile="level1-tiles-0-704" />
 <cell />
@@ -41,7 +41,7 @@
 <cell tile="level1-tiles-384-704" />
 <cell />
 <cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 </column>
 <column><cell />
 <cell />
@@ -52,7 +52,7 @@
 <cell tile="level1-tiles-384-704" />
 <cell />
 <cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 </column>
 <column><cell />
 <cell />
@@ -76,7 +76,7 @@
 <cell />
 <cell />
 </column>
-<column><cell />
+<column><cell tile="level1-tiles-0-704" />
 <cell />
 <cell />
 <cell tile="level1-tiles-0-704" />
@@ -87,7 +87,7 @@
 <cell />
 <cell />
 </column>
-<column><cell />
+<column><cell tile="level1-tiles-0-704" />
 <cell />
 <cell />
 <cell tile="level1-tiles-0-704" />
@@ -98,7 +98,7 @@
 <cell />
 <cell />
 </column>
-<column><cell />
+<column><cell tile="level1-tiles-0-704" />
 <cell />
 <cell />
 <cell />
@@ -109,7 +109,7 @@
 <cell />
 <cell />
 </column>
-<column><cell />
+<column><cell tile="level1-tiles-0-704" />
 <cell />
 <cell />
 <cell />
@@ -120,7 +120,7 @@
 <cell />
 <cell />
 </column>
-<column><cell />
+<column><cell tile="level1-tiles-0-704" />
 <cell />
 <cell />
 <cell />
@@ -129,20 +129,21 @@
 <cell />
 <cell />
 <cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 </column>
-<column><cell />
+<column><cell tile="level1-tiles-0-704" />
+<cell tile="level1-tiles-0-704" />
+<cell tile="level1-tiles-0-704" />
+<cell tile="level1-tiles-0-704" />
+<cell tile="level1-tiles-0-704" />
 <cell />
 <cell />
 <cell />
 <cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 </column>
-<column><cell />
+<column><cell tile="level1-tiles-0-704" />
+<cell tile="level1-tiles-0-704" />
 <cell />
 <cell />
 <cell />
@@ -150,10 +151,9 @@
 <cell />
 <cell />
 <cell />
-<cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 </column>
-<column><cell />
+<column><cell tile="level1-tiles-0-704" />
 <cell />
 <cell />
 <cell />
@@ -162,9 +162,9 @@
 <cell />
 <cell />
 <cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 </column>
-<column><cell />
+<column><cell tile="level1-tiles-0-704" />
 <cell />
 <cell />
 <cell />
@@ -173,9 +173,9 @@
 <cell />
 <cell />
 <cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 </column>
-<column><cell />
+<column><cell tile="level1-tiles-0-704" />
 <cell />
 <cell />
 <cell />
@@ -184,9 +184,9 @@
 <cell />
 <cell />
 <cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 </column>
-<column><cell />
+<column><cell tile="level1-tiles-0-704" />
 <cell />
 <cell />
 <cell />
@@ -195,29 +195,29 @@
 <cell />
 <cell />
 <cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 </column>
-<column><cell />
+<column><cell tile="level1-tiles-0-704" />
 <cell />
 <cell />
 <cell />
 <cell />
+<cell tile="level1-tiles-0-704" />
+<cell tile="level1-tiles-0-704" />
+<cell tile="level1-tiles-0-704" />
 <cell />
-<cell />
-<cell />
-<cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
 </column>
-<column><cell />
+<column><cell tile="level1-tiles-0-704" />
 <cell />
 <cell />
 <cell />
 <cell />
 <cell />
 <cell />
-<cell />
-<cell />
-<cell />
+<cell tile="level1-tiles-0-704" />
+<cell tile="level1-tiles-0-704" />
+<cell tile="level1-tiles-0-704" />
 </column>
 </rectmap>
 </resource>
