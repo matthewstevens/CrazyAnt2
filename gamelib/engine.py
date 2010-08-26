@@ -15,9 +15,34 @@ from data import resourceManager
 from util_layers import HelloWorld, KeyDisplay, MouseDisplay, SplashScreenLayer, MenuBackground, MainMenu, OptionMenu
 #from util_screens import MenuScreen, SplashScreen
 
+class CharacterLayer(layer.ScrollableLayer):
+    is_event_handler = True
+    def __init__(self, manager):
+        self.manager = manager
+        super(CharacterLayer, self).__init__()
+        frames = resourceManager.objects.character['manstanding']
+        animation = image.Animation.from_image_sequence(frames, 0.4)
+        self.character = Sprite(animation, (100, 306))
+        #self.position = 
+        self.add(self.character)
+        self.do(LevelAction())
+        self.move_vec = 0
+    def on_key_press(self, symbol, modifiers):
+        print 'ouch'
+        if symbol == ord('a'):
+            self.move_vec -= 1
+        elif symbol == ord('d'):
+            self.move_vec += 1
+    def on_key_release(self, symbol, modifiers):
+        print 'aaah'
+        if symbol == ord('a'):
+            self.move_vec += 1
+        elif symbol == ord('d'):
+            self.move_vec -= 1
+
+
 class Level(scene.Scene):
 
-    is_event_handler = True
 
     """
     Test level to prototype how it all works
@@ -29,19 +54,13 @@ class Level(scene.Scene):
 
         self.map = resourceManager.levels.level1['level1']
         self.map.set_view(0, 0, 640, 480)
-        self.add(self.map)
 
         self.manager.add(self.map, z = 1)
         self.manager.set_focus(100, 100)
-        self.add(self.manager)
 
-        frames = resourceManager.objects.character['manstanding']
-        animation = image.Animation.from_image_sequence(frames, 0.4)
-        self.character = Sprite(animation, position = (100, 306))
-        self.char_layer = layer.ScrollableLayer()
-        self.char_layer.add(self.character)
-        self.add(self.char_layer)
+        self.char_layer = CharacterLayer(self.manager)
         self.manager.add(self.char_layer, z = 2)
+        self.add(self.manager)
         #self.do(LevelAction())
         #self.manager.set_focus(-100, -100)
     def step(self, dt):
@@ -49,17 +68,18 @@ class Level(scene.Scene):
         pass
     def get_scene(self):
         return self.scene
-    def on_key_press(self, symbol, modifiers):
-        print 'ouch'
-    def on_key_release(self, symbo, modifiers):
-        print 'aaah'
 
 class LevelAction(Action):
     def step(self, dt):
-        #x, y, = self.target.char_layer.position
-        #self.target.manager.set_focus(int(x), int(y))
-        #print 'ping'
-        pass
+        x, y, = self.target.character.position
+        vec = self.target.move_vec
+        if vec:
+            print "foo"
+            print dt
+            x += dt * vec *20 
+            self.target.character.position = x, y
+            #self.target.set_focus(x, y)
+            self.target.manager.set_focus(int(x), int(y))
 
 class Engine(object):
     def init(self):
