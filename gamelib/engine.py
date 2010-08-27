@@ -20,25 +20,38 @@ class CharacterLayer(layer.ScrollableLayer):
     def __init__(self, manager):
         self.manager = manager
         super(CharacterLayer, self).__init__()
+        #Setup animations
         frames = resourceManager.objects.character['manstanding']
-        animation = image.Animation.from_image_sequence(frames, 0.4)
-        self.character = Sprite(animation, (100, 306))
+        self.standing_right_animation = image.Animation.from_image_sequence(frames, 0.4)
+        self.standing_left_animation = image.Animation.from_image_sequence(self.generate_facing_left(frames), 0.4)
+        
         #self.position = 
+        frames = resourceManager.objects.character['manwalking']
+        self.walking_right_animation = image.Animation.from_image_sequence(frames, 0.1)
+        self.walking_left_animation = image.Animation.from_image_sequence(self.generate_facing_left(frames), 0.1)
+
+        self.character = Sprite(self.standing_right_animation, (100, 306))
         self.add(self.character)
         self.do(LevelAction())
         self.move_vec = 0
+
+    def generate_facing_left(self, frames):
+        for i in frames:
+            yield i.get_texture().get_transform(flip_x=True)
     def on_key_press(self, symbol, modifiers):
-        print 'ouch'
         if symbol == ord('a'):
             self.move_vec -= 1
+            self.character.image = self.walking_left_animation
         elif symbol == ord('d'):
             self.move_vec += 1
+            self.character.image = self.walking_right_animation
     def on_key_release(self, symbol, modifiers):
-        print 'aaah'
         if symbol == ord('a'):
             self.move_vec += 1
+            self.character.image = self.standing_left_animation
         elif symbol == ord('d'):
             self.move_vec -= 1
+            self.character.image = self.standing_right_animation
 
 
 class Level(scene.Scene):
@@ -74,8 +87,6 @@ class LevelAction(Action):
         x, y, = self.target.character.position
         vec = self.target.move_vec
         if vec:
-            print "foo"
-            print dt
             x += dt * vec *20 
             self.target.character.position = x, y
             #self.target.set_focus(x, y)

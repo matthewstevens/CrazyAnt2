@@ -71,7 +71,8 @@ class ObjectResourceManagerGroup(ResourceManagerGroup):
             files = os.listdir(subpath)
             files.sort()
             for file in files:
-                sub_results.append(self.load_img(os.path.join(subpath, file)))
+                if file.find('.png') != -1:
+                    sub_results.append(self.load_img(os.path.join(subpath, file)))
             result[subdir] = sub_results
         return result
     def load_img(self, file_name):
